@@ -1,0 +1,196 @@
+body {
+    font-family: 'Arial', sans-serif;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    margin: 0;
+    background: linear-gradient(135deg, #ff9a9e, #fad0c4);
+    overflow: hidden;
+    flex-direction: column;
+}
+
+.content {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    z-index: 1;
+    width: 100%;
+    max-width: 600px;
+    padding: 20px;
+    box-sizing: border-box;
+    flex-direction: column;
+    align-items: center;
+}
+
+.card-container {
+    perspective: 1500px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+}
+
+.card {
+    width: 280px;
+    height: 180px;
+    position: relative;
+    transform-style: preserve-3d;
+    transition: transform 1.2s ease-in-out;
+    cursor: pointer;
+    border-radius: 15px;
+}
+
+.card-front,
+.card-back {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    backface-visibility: hidden;
+    border-radius: 15px;
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    padding: 20px;
+    overflow: hidden;
+}
+
+.card-front {
+    background: linear-gradient(145deg, #ff758c, #ff7eb3);
+    color: #fff;
+    font-size: 1.4rem;
+    font-weight: bold;
+}
+
+.card-front .heart {
+    font-size: 3rem;
+    margin-top: 10px;
+    animation: pulse 1.5s infinite;
+}
+
+.card-back {
+    background: linear-gradient(145deg, #fa709a, #fee140);
+    color: #fff;
+    transform: rotateY(180deg);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 20px;
+    text-align: center;
+}
+
+.card-back .message {
+    font-size: 1.4rem;
+    margin: 10px 0;
+    animation: fadeIn 1.5s ease forwards;
+    line-height: 1.4;
+}
+
+.card-back .confetti {
+    font-size: 2rem;
+    margin-top: 15px;
+    display: flex;
+    gap: 10px;
+}
+
+.image-container {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+}
+
+.image-container img {
+    position: absolute;
+    width: 70px;
+    height: 70px;
+    object-fit: cover;
+    border-radius: 50%;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+    transition: transform 0.3s ease-in-out;
+}
+
+/* Colocando as imagens nas quinas com um pequeno afastamento */
+.image-container img:nth-child(1) {
+    top: 10%;
+    left: 10%;
+}
+
+.image-container img:nth-child(2) {
+    top: 10%;
+    right: 10%;
+}
+
+.image-container img:nth-child(3) {
+    bottom: 10%;
+    left: 10%;
+}
+
+.image-container img:nth-child(4) {
+    bottom: 10%;
+    right: 10%;
+}
+
+@keyframes pulse {
+    0%, 100% {
+        transform: scale(1);
+    }
+    50% {
+        transform: scale(1.2);
+    }
+}
+
+@keyframes fadeIn {
+    0% {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    100% {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.card.open {
+    transform: rotateY(180deg);
+}
+
+@media (max-width: 768px) {
+    .content {
+        width: 90%;
+        height: 90%;
+    }
+
+    .card {
+        width: 250px;
+        height: 160px;
+    }
+
+    .image-container img {
+        width: 60px;
+        height: 60px;
+    }
+}
+
+@media (max-width: 480px) {
+    .content {
+        width: 95%;
+        height: 95%;
+    }
+
+    .card {
+        width: 220px;
+        height: 140px;
+    }
+
+    .image-container img {
+        width: 50px;
+        height: 50px;
+    }
+}
